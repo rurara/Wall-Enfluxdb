@@ -11,5 +11,8 @@
     "tsdb"
   ],
   "author": "lotco",
-  "license": "MIT"
+  "license": "MIT",
+  "bin": {
+    "log-run": "bin/wall-enfluxdb.js"
+  }
 }
