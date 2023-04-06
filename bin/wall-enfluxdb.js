@@ -1,8 +1,16 @@
+class Wallenfluxdb {
+	_token
+	constructor(token) {
+		this._token=token
+	}
 
-export const wallenfluxdb = (){
-	const test = ()=>{
-		console.log('eeeeeva')
+	get token(){
+		return this._token
+	}
+
+	test(){
+		console.log('eeeeeva ')
 	}
 }
 
-wallenfluxdb()
+export default Wallenfluxdb
