@@ -1,6 +1,6 @@
 {
   "name": "wall-enfluxdb",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "javascript influx-db tool",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,11 @@
   "bin": {
     "log-run": "bin/wall-enfluxdb.js"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "node-fetch": "^3.3.1"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3"
+  }
 }

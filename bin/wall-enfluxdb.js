@@ -1,7 +1,7 @@
-import url from 'url'
-// import fetch from 'fetch'
-// import request from 'request    '
+import fetch from 'node-fetch';
 
+//todo::http로 바꾸고 fetch 삭제하기
+// import http from "http"
 
 class Wallenfluxdb {
 	_token
@@ -9,21 +9,24 @@ class Wallenfluxdb {
 	_data
 	_timeUnit
 	_fetchOptions
+	_organization
+	_bucket
 
-	constructor(token, url, timeUnit) { 
+	constructor(token, url, organization, bucket, timeUnit) { 
 		this._token 		= token
 		this._data 			= []
 		this._influxUrl 	= url
 		this._timeUnit 		= timeUnit
+		this._organization	= organization
+		this._bucket		= bucket
 
 		this._fetchOptions = {
-		    headers: {
-	            Authorization   : `token ${this._token}`,
-	            'Content-Type'    : "text/plain; charset=utf-8",
-    	        'Accept'          : "application/json"
-		    },
-		    
-		    method: 'POST'
+    		headers: {
+		   		Authorization   : `token ${this._token}`,
+        		'Content-Type'    : "text/plain; charset=utf-8",
+        		'Accept'          : "application/json"
+    		},
+    		method: 'POST'
 		}
 	}
 
@@ -31,16 +34,16 @@ class Wallenfluxdb {
 		return this._token
 	}
 
-
 	writeData(measurement, tag, field, time){
 	
 		const makeData = (object)=>{
 			let tempString
 			let isFirst = true
 			for (let key of Object.keys(object)) {
-				tag = isFirst 
-					? `${key}=${object.key}`
-					: `${tag},${key}=${tag.key}`			
+				tempString = isFirst 
+					? `${key}=${object[key]}`
+					: `${tempString},${key}=${object[key]}`	
+				isFirst = false
 			}
 
 			return tempString
@@ -49,32 +52,27 @@ class Wallenfluxdb {
 		const tagString = makeData(tag)
 		const fieldString = makeData(field)
 
-		this._data.push = `${measurement},${tagString} ${fieldString} ${time}`
+		this._data.push(`${measurement},${tagString} ${fieldString} ${time}`)
 	}
 	
 	commitData(){
 		let dataString = ""
-
+		console.log(this._data)
 	    for (const inData of this._data){
         	dataString = `${dataString}
 				${inData}`
     	}
 
-		this._fetchOptions['data'] = dataString
+		const writeUrl = `${this._influxUrl}/api/v2/write?org=${this._organization}&bucket=${this._bucket}&precision=${this._timeUnit}`
+		this._fetchOptions.body = dataString
+		fetch(writeUrl, this._fetchOptions)
+		.then((response) => {
+			// console.log("response:", response)
+		})
 
-
-		console.log(url.parse('https://google.com'))
-
-		// fetch(_influxUrl, _fetchOptions)
-		// .then((data) => {
-		// 	console.log(data)
-		// 	return data.json()
-		// })
-		// .then((res) => {
-		// 	console.log(res)
-		// 	this._data = []
-		// })
+		console.log(`??-${dataString}`)
 	}
+
 	test(){
 		console.log('eeeeeva ')
 	}
