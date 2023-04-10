@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-import Wallenfluxdb from './../bin/wall-enfluxdb.js'
+import Wallenfluxdb from '../lib/Wall-Enfluxdb.js'
 
 const WallE = new Wallenfluxdb(
 	process.env.INFLUX_TOKEN,

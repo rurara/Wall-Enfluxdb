@@ -1,8 +1,8 @@
 {
-  "name": "wall-enfluxdb",
-  "version": "0.1.2",
+  "name": "Wall-Enfluxdb",
+  "version": "0.1.3",
   "description": "javascript influx-db tool",
-  "main": "./lib/wall-enfluxdb.js",
+  "main": "./lib/Wall-Enfluxdb.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,7 +13,7 @@
   "author": "lotco",
   "license": "MIT",
   "bin": {
-    "log-run": "lib/wall-enfluxdb.js"
+    "log-run": "lib/Wall-Enfluxdb.js"
   },
   "type": "module",
   "dependencies": {
