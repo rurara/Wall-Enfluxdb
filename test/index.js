@@ -9,9 +9,15 @@ const WallE = new Wallenfluxdb(
 	process.env.INFLUX_BUCKET,
 	"ms")
 
-WallE.writeData("walle", {tag:"walle", tag2:"yaho"},{field:10}, new Date().getTime())
-WallE.writeData("eva", {tag:"eva", tag2:"pizza"},{field:20}, new Date().getTime())
+WallE.writeData("walle", {tag:"walle", tag2:"yaho"},{field:140}, new Date().getTime())
+
+WallE.writeData("eva", {tag:"eva", tag2:"pizza"},{field:201}, new Date().getTime())
 
 WallE.commitData()
+.then((response)=>{
+	console.log(`input response ${JSON.stringify(response)}`)
+}).catch((error)=>{
+	console.log(`error ${error}`)
+})
 
 WallE.test()
