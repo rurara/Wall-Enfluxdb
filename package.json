@@ -16,10 +16,13 @@
     "log-run": "lib/Wall-Enfluxdb.js"
   },
   "type": "module",
-  "dependencies": {
-    "node-fetch": "^3.3.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "dotenv": "^16.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rurara/Wall-Enfluxdb"
+  },
+  "homepage": "https://github.com/rurara/Wall-Enfluxdb"
 }
