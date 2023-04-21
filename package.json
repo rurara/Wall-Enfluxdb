@@ -1,5 +1,5 @@
 {
-  "name": "Wall-Enfluxdb",
+  "name": "wall-enfluxdb",
   "version": "0.1.4-alpha.1",
   "description": "javascript influx-db tool",
   "main": "./lib/Wall-Enfluxdb.js",
